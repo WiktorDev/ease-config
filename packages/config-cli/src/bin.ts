@@ -11,11 +11,7 @@ async function main() {
   switch (command) {
     case "generate":
     case "gen": {
-      // Allow custom config dir: ease-config generate --config ./my-config
-      const configFlagIdx = args.indexOf("--config");
-      const configDir = configFlagIdx !== -1 && args[configFlagIdx + 1]
-          ? path.resolve(projectRoot, args[configFlagIdx + 1])
-          : path.join(projectRoot, "config");
+      const configDir = path.join(projectRoot, "config");
       await generate({ projectRoot, configDir });
       break;
     }
@@ -39,12 +35,8 @@ COMMANDS
   generate        Scan config/ and generate types + runtime into @ease/config
   gen             Alias for generate
 
-OPTIONS
-  --config <dir>  Path to config directory (default: ./config)
-
 EXAMPLES
   npx ease-config generate
-  npx ease-config generate --config ./src/config
 `);
 }
 
