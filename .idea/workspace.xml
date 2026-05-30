@@ -5,81 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c50bf6f-f5d0-4b7b-b121-ab2750e5a2a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/nest-ease-config.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/bin.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/bin.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/bin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/bin.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/generator.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/generator.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/generator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/generator.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/index.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/index.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/cli.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/cli.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/cli.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/cli.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/generate.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/generate.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/generate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/generate.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/load-configs.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/load-configs.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/load-configs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/load-configs.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/to-type.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/to-type.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/to-type.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/dist/old/to-type.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/.bin/esbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/.bin/esbuild.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/.bin/esbuild.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/@esbuild/win32-x64/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/@esbuild/win32-x64/esbuild.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/@esbuild/win32-x64/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/bin/esbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/install.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/lib/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/lib/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/node_modules/esbuild/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/src/bin.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/src/generator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config-cli/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/config.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/config.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/config.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/defineConfig.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/defineConfig.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/defineConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/defineConfig.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/index.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/dist/index.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/generated/config.generated.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/generated/config.generated.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/src/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/src/defineConfig.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/config/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.base.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/config/src/ease-config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/config/src/env.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/config/src/helpers/require-ts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/config/src/registry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config-cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config-cli/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config-cli/src/generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config-cli/src/generator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/generated/config.generated.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/generated/config.generated.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/src/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/src/defineConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/src/defineConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,63 +28,75 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "WiktorDev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/WiktorDev/ease-config.git",
+    "accountId": "80a6542c-8aa6-47e5-b48c-9feb7658db37"
+  }
+}]]></component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7668861028433384E-11" />
-      <entry key="MS500" value="0.0070708545952760824" />
-      <entry key="S2" value="0.31678386711626844" />
-      <entry key="S5" value="0.9835642814214944" />
-      <entry key="S10" value="2.499413821320683" />
-      <entry key="S30" value="7.66652857832492" />
-      <entry key="S60" value="12.431467290182951" />
-      <entry key="M2" value="20.058490530849497" />
-      <entry key="M5" value="32.74499629652172" />
-      <entry key="M10" value="40.627532819862566" />
-      <entry key="M15" value="44.00386534920862" />
-      <entry key="M30" value="48.30893776868423" />
-      <entry key="H1" value="52.52160455379214" />
-      <entry key="H2" value="62.16351731159217" />
-      <entry key="H4" value="80.46824418845021" />
-      <entry key="D1" value="121.20309483595703" />
-      <entry key="W1" value="132.86558772143465" />
+      <entry key="MS100" value="1.0076517210748979" />
+      <entry key="MS500" value="1.37735649213014" />
+      <entry key="S2" value="1.7837687734420307" />
+      <entry key="S5" value="1.907143116155337" />
+      <entry key="S10" value="1.9556966445081638" />
+      <entry key="S30" value="2.8331742568394556" />
+      <entry key="S60" value="5.894598629122532" />
+      <entry key="M2" value="11.437823320162348" />
+      <entry key="M5" value="23.693465076980964" />
+      <entry key="M10" value="37.3274737249774" />
+      <entry key="M15" value="46.44250725789688" />
+      <entry key="M30" value="67.05904381479975" />
+      <entry key="H1" value="102.35889069610168" />
+      <entry key="H2" value="148.93788487269728" />
+      <entry key="H4" value="198.0109509887101" />
+      <entry key="D1" value="283.31798156507836" />
+      <entry key="W1" value="306.7192410001408" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000017495178521" />
-      <entry key="S2" value="1.0427654811138143" />
-      <entry key="S5" value="1.398236163499154" />
-      <entry key="S10" value="1.8795510213611624" />
-      <entry key="S30" value="2.5158729695580133" />
-      <entry key="S60" value="2.741170611726699" />
-      <entry key="M2" value="2.8921399018671146" />
-      <entry key="M5" value="3.179474590095286" />
-      <entry key="M10" value="3.456506423326562" />
-      <entry key="M15" value="3.598110063687555" />
-      <entry key="M30" value="3.777897853351355" />
-      <entry key="H1" value="4.019125555571294" />
-      <entry key="H2" value="5.272877891148358" />
-      <entry key="H4" value="8.25134806327975" />
-      <entry key="D1" value="15.472981183450683" />
-      <entry key="W1" value="17.60724119343823" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="5.695977570505249E-107" />
+      <entry key="S5" value="3.5303840823836478E-43" />
+      <entry key="S10" value="8.29819857037201E-22" />
+      <entry key="S30" value="1.923797833768574E-7" />
+      <entry key="S60" value="8.343049018129956E-4" />
+      <entry key="M2" value="0.06389752736870553" />
+      <entry key="M5" value="1.5158115244637052" />
+      <entry key="M10" value="5.92816505389876" />
+      <entry key="M15" value="9.770997953753849" />
+      <entry key="M30" value="16.731551622005117" />
+      <entry key="H1" value="22.964860666026485" />
+      <entry key="H2" value="28.358452274340717" />
+      <entry key="H4" value="33.849111470552145" />
+      <entry key="D1" value="45.00265424182264" />
+      <entry key="W1" value="48.37227833041131" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.02591623581049377" />
-      <entry key="MS500" value="0.48682958395703924" />
-      <entry key="S2" value="1.162317060990652" />
-      <entry key="S5" value="2.2574179018578624" />
-      <entry key="S10" value="4.290176810852636" />
-      <entry key="S30" value="10.140028873435185" />
-      <entry key="S60" value="15.148177950439273" />
-      <entry key="M2" value="22.935908499690285" />
-      <entry key="M5" value="35.91607748498619" />
-      <entry key="M10" value="44.078785346059206" />
-      <entry key="M15" value="47.59813670841869" />
-      <entry key="M30" value="52.08471012904416" />
-      <entry key="H1" value="56.53954634584464" />
-      <entry key="H2" value="67.43553041993808" />
-      <entry key="H4" value="88.71884950846686" />
-      <entry key="D1" value="136.67583011111725" />
-      <entry key="W1" value="150.47278869204783" />
+      <entry key="MS100" value="0.8592043950121263" />
+      <entry key="MS500" value="1.334639613213034" />
+      <entry key="S2" value="1.769876052638258" />
+      <entry key="S5" value="1.9011972815122529" />
+      <entry key="S10" value="1.952645408360515" />
+      <entry key="S30" value="2.8315478815768063" />
+      <entry key="S60" value="5.893521654713248" />
+      <entry key="M2" value="11.498590875076383" />
+      <entry key="M5" value="25.19860304794435" />
+      <entry key="M10" value="43.23974979199805" />
+      <entry key="M15" value="56.19732864871759" />
+      <entry key="M30" value="83.77732086800623" />
+      <entry key="H1" value="125.31444648664342" />
+      <entry key="H2" value="177.29039917406115" />
+      <entry key="H4" value="231.85644444365323" />
+      <entry key="D1" value="328.31982676389634" />
+      <entry key="W1" value="355.09139516476984" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -178,6 +129,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Wiktor\WebstormProjects\nest-ease-config\packages\config-cli\src" />
       <recent name="C:\Users\Wiktor\WebstormProjects\nest-ease-config\packages\config\generated" />
       <recent name="C:\Users\Wiktor\WebstormProjects\nest-ease-config\packages\config-cli\src\old" />
       <recent name="C:\Users\Wiktor\WebstormProjects\nest-ease-config\packages\config" />
@@ -197,7 +149,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780133308472</updated>
-      <workItem from="1780133309769" duration="11421000" />
+      <workItem from="1780133309769" duration="18044000" />
     </task>
     <servers />
   </component>

@@ -2,41 +2,47 @@ import path from "path";
 import fs from "fs";
 import os from "os";
 
-interface GenerateOptions {
+export interface GenerateOptions {
   projectRoot: string;
   configDir: string;
 }
 
-interface CorePaths {
-  coreDir: string;
-  distDir: string;
-  generatedDir: string;
+function resolveDistDir(projectRoot: string): string {
+  const distDir = path.join(projectRoot, "node_modules", "@ease", "config", "dist");
+  if (fs.existsSync(distDir)) return distDir;
+  throw new Error(`[ease-config] Cannot find core package dist/ in node_modules.\nMake sure you ran: npm install`);
 }
 
-function resolveCorePaths(projectRoot: string): CorePaths {
-  const candidates = [
-    path.join(projectRoot, "node_modules", "@ease", "config"),
-  ];
-  for (const coreDir of candidates) {
-    if (fs.existsSync(coreDir)) {
-      return {
-        coreDir,
-        distDir: path.join(coreDir, "dist"),
-        generatedDir: path.join(coreDir, "generated"),
-      };
+const SHIM = `
+"use strict";
+(function() {
+  const Module = require("module");
+  const __shimExports = {
+    defineConfig: function(cfg) { return { __brand: "ConfigDefinition", value: cfg }; },
+    env: function(key, fallback) { return { __brand: "EnvValue", key: key, fallback: fallback }; },
+  };
+  const __origLoad = Module._load.bind(Module);
+  Module._load = function(request, parent, isMain) {
+    if (request === "@nest-ease/config" || request === "@mylib/core") {
+      return __shimExports;
     }
-  }
-  throw new Error(
-      `[ease-config] Cannot find core package in node_modules.\n` +
-      `Make sure you ran: npm install @ease/config`
-  );
+    return __origLoad(request, parent, isMain);
+  };
+})();
+`;
+
+interface EnvValueRaw {
+  __brand: "EnvValue";
+  key: string;
+  fallback: unknown;
 }
 
-function loadConfigValues(filePath: string): Record<string, unknown> {
-  const tmpFile = path.join(
-      os.tmpdir(),
-      `ease-${Date.now()}-${path.basename(filePath, ".ts")}.cjs`
-  );
+function isEnvValue(v: unknown): v is EnvValueRaw {
+  return (typeof v === "object" && v !== null && (v as Record<string, unknown>).__brand === "EnvValue");
+}
+
+function loadRawConfig(filePath: string): Record<string, unknown> {
+  const tmpFile = path.join(os.tmpdir(), `ease-config-${Date.now()}-${path.basename(filePath, ".ts")}.cjs`);
 
   try {
     const { buildSync } = require("esbuild") as typeof import("esbuild");
@@ -46,14 +52,21 @@ function loadConfigValues(filePath: string): Record<string, unknown> {
       platform: "node",
       format: "cjs",
       outfile: tmpFile,
-      external: ["@nestjs/*", "reflect-metadata", "rxjs", "class-transformer", "class-validator"],
+      external: [
+        "@nest-ease/config",
+        "@nest-ease/*",
+        "@mylib/core",
+        "@nestjs/*",
+        "reflect-metadata",
+        "rxjs",
+        "class-transformer",
+        "class-validator",
+      ],
       logLevel: "silent",
+      banner: { js: SHIM },
     });
   } catch (err) {
-    throw new Error(
-        `[ease-config] Failed to bundle config file: ${filePath}\n` +
-        `Make sure esbuild is installed: npm install --save-dev esbuild\n${err}`
-    );
+    throw new Error(`[ease-config] Failed to bundle ${path.basename(filePath)}.\nMake sure esbuild is installed: npm install --save-dev esbuild\n${err}`);
   }
 
   try {
@@ -61,6 +74,7 @@ function loadConfigValues(filePath: string): Record<string, unknown> {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require(tmpFile) as Record<string, unknown>;
     const raw = mod?.default ?? mod;
+
     if (raw && typeof raw === "object" && (raw as Record<string, unknown>).__brand === "ConfigDefinition") {
       return (raw as { value: Record<string, unknown> }).value;
     }
@@ -70,9 +84,31 @@ function loadConfigValues(filePath: string): Record<string, unknown> {
   }
 }
 
+/**
+ * EnvValue:
+ *   env("PORT", 3000)        → number
+ *   env("HOST", "localhost") → string
+ *   env("DEBUG", false)      → boolean
+ *   env("SECRET")            → string
+ *
+ * Const values:
+ *   3000        → 3000
+ *   "localhost" → "localhost"
+ *   true        → true
+ */
 function toTsType(value: unknown, indent = ""): string {
+  if (isEnvValue(value)) {
+    if (value.fallback === undefined) return "string";
+    switch (typeof value.fallback) {
+      case "number":  return "number";
+      case "boolean": return "boolean";
+      default:        return "string";
+    }
+  }
+
   if (value === null) return "null";
   if (value === undefined) return "undefined";
+
   switch (typeof value) {
     case "string":  return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
     case "number":  return String(value);
@@ -85,7 +121,7 @@ function toTsType(value: unknown, indent = ""): string {
       } else {
         const obj = value as Record<string, unknown>;
         const inner = Object.entries(obj)
-            .map(([k, v]) => `${indent}    ${k}: ${toTsType(v, indent + "  ")}`)
+            .map(([k, v]) => `${indent}    readonly ${k}: ${toTsType(v, indent + "  ")}`)
             .join(";\n");
         return `{\n${inner}\n${indent}  }`;
       }
@@ -93,54 +129,31 @@ function toTsType(value: unknown, indent = ""): string {
   }
 }
 
-function generateNamespaceJs(values: Record<string, unknown>): string {
-  return [
-    `// AUTO-GENERATED by @ease/config-cli — do not edit`,
-    `"use strict";`,
-    `module.exports = ${JSON.stringify(values, null, 2)};`,
-    ``,
-  ].join("\n");
-}
-
-/**
- * Generuje dist/index.d.ts nadpisując typ `config` na AllConfigs z literałami.
- *
- * Strategia: zamiast próbować importować typy z generated/ (problem z rootDirs
- * po kompilacji), generator bezpośrednio nadpisuje dist/index.d.ts — plik który
- * TypeScript czyta gdy użytkownik robi `import { config } from "@nest-ease/config"`.
- *
- *   export declare const config: {
- *     readonly main: {
- *       readonly port: 3000;
- *       readonly host: "localhost";
- *     };
- *   };
- */
 function generateDistIndexDts(
     originalDts: string,
-    namespaces: Array<{ name: string; values: Record<string, unknown> }>
+    namespaces: Array<{ name: string; rawValues: Record<string, unknown> }>
 ): string {
   const configType = namespaces
-      .map(({ name, values }) => {
-        const props = Object.entries(values)
+      .map(({ name, rawValues }) => {
+        const props = Object.entries(rawValues)
             .map(([key, val]) => `    readonly ${key}: ${toTsType(val)};`)
             .join("\n");
         return `  readonly ${name}: {\n${props}\n  };`;
       })
       .join("\n");
 
-  const typed = originalDts.replace(
-      /export declare const config:.*?;/s,
-      `export declare const config: {\n${configType}\n};`
-  );
+  const replacement = `export declare const config: {\n${configType}\n};`;
 
-  return [
+  const patched = originalDts.replace(/export declare const config:[\s\S]*?(?=\nexport|\n\/\/|$)/, replacement + "\n");
+
+  const header = [
     `// AUTO-GENERATED by @ease/config-cli — do not edit manually`,
     `// Run: npx ease-config generate`,
     `// Generated: ${new Date().toISOString()}`,
     ``,
-    typed !== originalDts ? typed : `${originalDts}\n\nexport declare const config: {\n${configType}\n};`,
   ].join("\n");
+
+  return header + (patched !== originalDts ? patched : `${originalDts}\n${replacement}\n`);
 }
 
 export async function generate(options: GenerateOptions): Promise<void> {
@@ -150,8 +163,7 @@ export async function generate(options: GenerateOptions): Promise<void> {
     throw new Error(`[ease-config] Config directory not found: ${configDir}`);
   }
 
-  const { distDir, generatedDir } = resolveCorePaths(projectRoot);
-  fs.mkdirSync(generatedDir, { recursive: true });
+  const distDir = resolveDistDir(projectRoot);
 
   const tsFiles = fs
       .readdirSync(configDir)
@@ -162,35 +174,34 @@ export async function generate(options: GenerateOptions): Promise<void> {
     return;
   }
 
-  const collected: Array<{ name: string; values: Record<string, unknown> }> = [];
+  const collected: Array<{ name: string; rawValues: Record<string, unknown> }> = [];
 
   for (const file of tsFiles) {
     const namespace = path.basename(file, ".ts");
     const filePath = path.join(configDir, file);
-    console.log(`[ease-config] Processing ${file} → ${namespace}.*`);
+    console.log(`[ease-config] Processing ${file}…`);
 
-    const values = loadConfigValues(filePath);
-    collected.push({ name: namespace, values });
-
-    // Runtime JS z wartościami — ładowany przez Proxy w config.ts
-    fs.writeFileSync(
-        path.join(generatedDir, `${namespace}.js`),
-        generateNamespaceJs(values),
-        "utf8"
-    );
+    const rawValues = loadRawConfig(filePath);
+    collected.push({ name: namespace, rawValues });
   }
 
   const distIndexDts = path.join(distDir, "index.d.ts");
   if (!fs.existsSync(distIndexDts)) {
-    throw new Error(
-        `[ease-config] dist/index.d.ts not found. Build core first:\n  npm run build -w packages/config`
-    );
+    throw new Error(`[ease-config] dist/index.d.ts not found.\n` + `Build config core first: npm run build -w packages/config`);
   }
 
   const original = fs.readFileSync(distIndexDts, "utf8");
   fs.writeFileSync(distIndexDts, generateDistIndexDts(original, collected), "utf8");
 
-  console.log(`\n[ease-config] ✓ ${collected.length} namespace(s): ${collected.map(c => c.name).join(", ")}`);
-  console.log(`[ease-config] ✓ Patched dist/index.d.ts with typed config`);
-  console.log(`[ease-config] ✓ Output: ${generatedDir}\n`);
+  const summary = collected
+      .map(({ name, rawValues }) => {
+        const keys = Object.keys(rawValues).join(", ");
+        return `  ${name}: { ${keys} }`;
+      })
+      .join("\n");
+
+  console.log(`\n[ease-config] ✓ Types generated for ${collected.length} namespace(s):`);
+  console.log(summary);
+  console.log(`\n[ease-config] ✓ Patched: ${distIndexDts}`);
+  console.log(`[ease-config] ✓ Values loaded at runtime from: ${configDir}\n`);
 }
