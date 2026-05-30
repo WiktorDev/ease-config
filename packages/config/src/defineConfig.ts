@@ -5,7 +5,7 @@ export interface ConfigDefinition<T extends Record<string, unknown>> {
 
 /**
  * @example
- * import { defineConfig, env } from "@ease-config/config";
+ * import { defineConfig, env } from "@ease-lab/config";
  *
  * export default defineConfig({
  *   port:  env("PORT", 3000),        // number

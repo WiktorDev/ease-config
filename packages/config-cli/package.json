@@ -1,6 +1,6 @@
 {
-  "name": "@ease/config-cli",
-  "version": "1.0.0",
+  "name": "@ease-lab/config-cli",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "bin": {
     "ease-config": "dist/bin.js"
@@ -9,12 +9,9 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "files": [
-    "dist",
-    "generated"
-  ],
+  "files": ["dist"],
   "dependencies": {
-    "@ease/config": "*",
+    "@ease-lab/config": "*",
     "esbuild": "^0.21.0"
   },
   "devDependencies": {

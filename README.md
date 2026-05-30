@@ -4,17 +4,17 @@ A Node.js package that provides a Laravel-inspired configuration system.
 ## Installation
 You must install a core
 ```bash
-npm install @ease/config
+npm install @ease-lab/config
 ```
 
 and CLI for generating configs
 ```bash
-npm install -D @ease/config-cli
+npm install -D @ease-lab/config-cli
 ```
 
 ## Integrations
 - NestJs
-  Install a nest module `npm install @ease/config-nest`
+  Install a nest module `npm install @ease-lab/config-nest`
   // TODO
 
 ## Validation
@@ -25,7 +25,7 @@ All configuration files are loaded from the config/ directory. Each file must be
 
 config/app.ts
 ```ts
-import { defineConfig } from '@ease/config';
+import { defineConfig } from '@ease-lab/config';
 
 export default defineConfig({
   port: 3000,
@@ -36,7 +36,7 @@ After creating or updating configuration files, run ``npx ease-config generate``
 
 Usage in index.ts file
 ```ts
-import { config } from '@ease/config';
+import { config } from '@ease-lab/config';
 
 console.log(config.app.port); // `app` refers to the config file name (`config/app.ts`)
 ```

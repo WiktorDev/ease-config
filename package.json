@@ -1,5 +1,5 @@
 {
-  "name": "ease-libs",
+  "name": "ease-lab",
   "private": true,
   "workspaces": [
     "packages/*"

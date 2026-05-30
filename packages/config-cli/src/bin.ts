@@ -26,13 +26,13 @@ async function main() {
 
 function printHelp() {
   console.log(`
-@ease/config-cli — config generator
+@ease-lab/config-cli — config generator
 
 USAGE
   npx ease-config <command> [options]
 
 COMMANDS
-  generate        Scan config/ and generate types + runtime into @ease/config
+  generate        Scan config/ and generate types + runtime into @ease-lab/config
   gen             Alias for generate
 
 EXAMPLES

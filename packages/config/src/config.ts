@@ -40,7 +40,7 @@ function createConfigProxy(): any {
  * Type (dist/index.d.ts) is generating via `npx ease-config generate`.
  *
  * @example
- * import { config } from "@ease-config/config";
+ * import { config } from "@ease-lab/config";
  *
  * config.main.port   // number  (from env("PORT", 3000))
  * config.db.host     // string  (from env("DB_HOST", "localhost"))
