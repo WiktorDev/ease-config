@@ -13,3 +13,11 @@ export default defineConfig({
   debug: env('APP_DEBUG', false),
 });
 ```
+After creating or updating configuration files, run ``npx ease-config generate`` to regenerate all types and values.
+
+Usage in index.ts file
+```
+import { config } from '@ease/config';
+
+console.log(config.app.port); // `app` refers to the config file name (`config/app.ts`)
+```
