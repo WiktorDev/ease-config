@@ -12,6 +12,13 @@ and CLI for generating configs
 npm install -D @ease/config-cli
 ```
 
+## Integrations
+- NestJs
+  Install a nest module `npm install @ease/config-nest`
+  // TODO
+
+## Validation
+// TODO
 
 ## Example
 All configuration files are loaded from the config/ directory. Each file must be a .ts or .js module that default-exports a defineConfig call.
