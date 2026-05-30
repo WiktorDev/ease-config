@@ -3,12 +3,12 @@ A Node.js package that provides a Laravel-inspired configuration system.
 
 ## Installation
 You must install a core
-```
+```bash
 npm install @ease/config
 ```
 
 and CLI for generating configs
-```
+```bash
 npm install -D @ease/config-cli
 ```
 
@@ -28,7 +28,7 @@ export default defineConfig({
 After creating or updating configuration files, run ``npx ease-config generate`` to regenerate all types and values.
 
 Usage in index.ts file
-```
+```ts
 import { config } from '@ease/config';
 
 console.log(config.app.port); // `app` refers to the config file name (`config/app.ts`)
