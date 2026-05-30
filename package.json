@@ -1,0 +1,14 @@
+{
+  "name": "ease-libs",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "esbuild": "^0.28.0"
+  }
+}

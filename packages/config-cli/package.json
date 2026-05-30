@@ -1,0 +1,23 @@
+{
+  "name": "@ease/config-cli",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "bin": {
+    "nest-ease-config": "dist/bin.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "files": [
+    "dist",
+    "generated"
+  ],
+  "dependencies": {
+    "@ease/config": "*",
+    "esbuild": "^0.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
+  }
+}
