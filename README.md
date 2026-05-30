@@ -1,6 +1,18 @@
 # ease-config
 A Node.js package that provides a Laravel-inspired configuration system.
 
+## Installation
+You must install a core
+```
+npm install @ease/config
+```
+
+and CLI for generating configs
+```
+npm install -D @ease/config-cli
+```
+
+
 ## Example
 All configuration files are loaded from the config/ directory. Each file must be a .ts or .js module that default-exports a defineConfig call.
 
